@@ -1,3 +1,6 @@
+# Heres how I solved the BASIC Challenges on HTS
+
+
 **--------------------------------------------------------------**
 
 
@@ -6,7 +9,7 @@
 
 Check the default source code to see if it says it outright
 
-&#x20;
+
 
 **--------------------------------------------------------------**
 
@@ -92,7 +95,7 @@ Use SSI Injection to inject a payload of:
 
 
 
-<!--#exec cmd="ls ../" -->
+<img width="183" height="27" alt="image" src="https://github.com/user-attachments/assets/e2410447-700c-4fb7-8f31-e1b5b6aad398" />
 
 
 
