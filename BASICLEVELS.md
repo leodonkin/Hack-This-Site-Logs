@@ -1,314 +1,176 @@
 # HackThisSite Basic Challenges Security Writeups
-## Legal Notice
-This project documents my learning from authorised cybersecurity training environments.
 
-All testing was performed legally for educational purposes.
+> [!IMPORTANT]
+> ## Legal Notice
+> This project documents my learning from authorised cybersecurity training environments.
+> All testing was performed legally for educational purposes.
 
-## Basic Level 1
+---
 
-### Vulnerability:
+# Basic Level 1
 
+## Vulnerability:
 Information Disclosure
 
-### Notes:
+## What happened:
 
-The first step was checking the webpage source code to understand how
-the application worked.
+The website accidentally exposed information inside the page source code.
 
-The page contained sensitive information that should not have been
-exposed client-side.
+Since HTML code is downloaded by the browser, anyone viewing the website can inspect what was sent to them.
 
-### What I learned:
+## How it could be exploited:
 
-Anything sent to the browser can be viewed by the user. Sensitive
-information should never be stored in HTML comments or frontend code.
+Someone could inspect the website code and find information that developers accidentally left behind, such as comments, hidden information, or clues about how the website works.
 
-### Prevention:
+## What I learned:
 
-Remove sensitive information before deployment
+Anything given to the browser should be considered visible.
 
-Keep authentication logic server-side
+Important information should never be stored inside public website code.
 
-## Basic Level 2
+## Prevention:
 
-### Vulnerability:
+Keep sensitive information on the server.
 
-Improper File Handling
+Review code before releasing websites.
 
-### Notes:
+---
 
-I tested how the application behaved when submitting empty input.
+# Basic Level 2
 
-This showed that the password file was not correctly configured, which
-allowed the challenge to be bypassed.
+## Vulnerability:
+Incorrect File Setup
 
-### What I learned:
+## What happened:
 
-Applications should correctly handle missing files and unexpected input.
+The application expected a password file to exist, but it was not set up correctly.
 
-### Prevention:
+Testing different inputs showed that the application did not properly handle the missing file.
 
-Validate user input
+## How it could be exploited:
 
-Handle errors securely
+Someone could discover mistakes in how the website handles missing files or errors and use that information to understand how the system works.
 
-Avoid exposing backend issues to users
+## What I learned:
 
-## Basic Level 3
+Websites should safely handle errors instead of revealing useful information.
 
-### Vulnerability:
+## Prevention:
 
-Client Side Trust Issue
+Check files exist before using them.
 
-### Notes:
+Create proper error handling.
 
-While inspecting the HTML source, I noticed a hidden input field.
+---
 
-This showed that the application was relying on client side values that
-could be modified by the user.
+# Basic Level 3
 
-Changing the visibility of the input revealed additional information
-about where the password file was located.
+## Vulnerability:
+Trusting Browser Data
 
-### What I learned:
+## What happened:
 
-Hidden HTML elements are not secure because users can inspect and modify
-anything sent to their browser.
+The website used hidden HTML fields to store important information.
 
-### Prevention:
+I found that these fields could still be viewed and changed because they are sent to the user's browser.
 
-Do not trust client side values
+## How it could be exploited:
 
-Validate important data server side
+Someone could inspect the website, reveal hidden fields, and change values that the website incorrectly trusts.
 
-## Basic Level 4
+## What I learned:
 
-### Vulnerability:
+Hidden does not mean secure.
 
-Client Side Parameter Manipulation
+Anything sent to the browser can be inspected.
 
-### Notes:
+## Prevention:
 
-This challenge expanded on the previous one.
+Store important information on the server.
 
-By reviewing the HTML, I found that the application relied on a hidden
-input value for email handling.
+Do not trust values controlled by users.
 
-Changing the value demonstrated why important application logic should
-not be controlled from the frontend.
+---
 
-### What I learned:
+# Basic Level 6
 
-Users have full control over client side code.
+## Vulnerability:
+Weak Encryption
 
-### Prevention:
+## What happened:
 
-Perform validation server side
+The encryption method used predictable patterns.
 
-Do not store important values inside hidden fields
+By testing different inputs, it was possible to understand how the encryption changed the text.
 
-## Basic Level 5
+## How it could be exploited:
 
-### Vulnerability:
+If an encryption system is easy to predict, someone may be able to reverse it and reveal information that should stay private.
 
-Client Side Parameter Manipulation
+## What I learned:
 
-### Notes:
+Making your own encryption systems is risky.
 
-This challenge used a similar concept to Level 4.
+Strong, tested encryption methods should be used instead.
 
-The same security issue existed where the application trusted
-information controlled by the client.
+## Prevention:
 
-### What I learned:
+Use trusted encryption libraries.
 
-Repeated vulnerabilities are common when insecure coding practices are
-reused.
+Use secure password hashing methods.
 
-### Prevention:
+---
 
-Secure coding standards
+# Basic Level 7
 
-Server side validation
-
-## Basic Level 6
-
-### Vulnerability:
-
-Weak Encryption Logic
-
-### Notes:
-
-I tested how the encryption system behaved by encrypting sample values
-and looking for patterns.
-
-After understanding how the transformation worked, I was able to reverse
-the process.
-
-### What I learned:
-
-Custom encryption methods are usually insecure because patterns can
-often be discovered.
-
-### Prevention:
-
-Avoid creating custom encryption
-
-Use trusted cryptographic libraries
-
-Use proper password hashing methods
-
-## Basic Level 7
-
-### Vulnerability:
-
+## Vulnerability:
 OS Command Injection
 
-### Notes:
+## What happened:
 
-The application used a UNIX calendar function where a user could enter a
-year and receive the calendar output.
+The website passed user input into a system command without checking it properly first.
 
-Testing showed that user input was being passed into a system command
-without proper filtering.
+This allowed extra instructions to be processed by the system.
 
-This allowed additional commands to be interpreted by the system.
+## How it could be exploited:
 
-### What I learned:
+Someone could provide unexpected input that changes what command the server runs.
 
-Passing user input directly into system commands can allow unintended
-behaviour.
+Depending on the permissions of the application, this could expose files or affect the system.
 
-### Prevention:
+## What I learned:
 
-Validate and sanitise input
+User input should never be trusted automatically.
 
-Avoid directly executing user controlled commands
+## Prevention:
 
-Apply least privilege permissions
+Check user input.
 
-## Basic Level 8
+Avoid directly running system commands with user data.
 
-### Vulnerability:
+Limit what permissions applications have.
 
-Server Side Includes (SSI) Injection
+---
 
-### Notes:
+# Basic Level 10
 
-The application allowed SSI input to be processed by the server.
-
-Testing showed that server side instructions could be interpreted,
-exposing unintended information.
-
-### What I learned:
-
-Server side functionality can become dangerous when user input is not
-correctly controlled.
-
-### Prevention:
-
-Disable unnecessary SSI functionality
-
-Validate user input
-
-Restrict server permissions
-
-## Basic Level 9
-
-### Vulnerability:
-
-SSI Injection
-
-### Notes:
-
-This challenge built on the previous SSI vulnerability.
-
-I tested how the application handled server side input and confirmed
-that injected SSI instructions were still being processed.
-
-### What I learned:
-
-Fixing vulnerabilities requires removing the root cause, not just
-blocking one specific example.
-
-### Prevention:
-
-Proper input handling
-
-Disable unsafe server features
-
-Use secure configurations
-
-## Basic Level 10
-
-### Vulnerability:
-
+## Vulnerability:
 Broken Access Control
 
-### Notes:
+## What happened:
 
-I inspected how the application handled authorization and discovered
-that access control depended on a client controlled cookie value.
+The website trusted a value stored in the browser to decide if a user was allowed access.
 
-Changing the value demonstrated that authorization decisions should not
-rely on data controlled by the user.
+## How it could be exploited:
 
-### What I learned:
+Someone could change information stored in their browser and make the website think they have different permissions.
 
-Authentication and authorization checks must happen securely on the
-server.
+## What I learned:
 
-### Prevention:
+The user controls their own browser, so websites cannot rely on it for security decisions.
 
-Store authorization state server side
+## Prevention:
 
-Validate sessions properly
+Check permissions on the server.
 
-Do not trust client controlled values
-
-## Basic Level 11
-
-### Vulnerability:
-
-Directory Exposure / Information Disclosure
-
-### Notes:
-
-I used directory discovery techniques to understand the website
-structure.
-
-By investigating exposed paths and configuration files, I found
-information that revealed the correct location needed to complete the
-challenge.
-
-### What I learned:
-
-Misconfigured directories and exposed files can reveal sensitive
-application information.
-
-### Prevention:
-
-Restrict directory access
-
-Protect configuration files
-
-Remove unnecessary public files
-
-Configure server permissions correctly
-
-## Summary
-
-Completing these challenges helped me practise:
-
-Reading and understanding web applications
-
-Inspecting client side code
-
-Understanding trust boundaries
-
-Basic vulnerability discovery
-
-Thinking about how issues can be fixed
-
-These labs were completed only in authorised environments for learning
-and cybersecurity research.
+Use proper session management.
