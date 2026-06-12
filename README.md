@@ -4,18 +4,6 @@ This project documents my learning from authorised cybersecurity training enviro
 
 All testing was performed legally for educational purposes.
 
-- [Basic 1](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-1)
-- [Basic 2](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-2)
-- [Basic 3](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-3)
-- [Basic 4](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-4)
-- [Basic 5](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-5)
-- [Basic 6](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-6)
-- [Basic 7](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-7)
-- [Basic 8](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-8)
-- [Basic 9](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-9)
-- [Basic 10](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-10)
-- [Basic 11](https://github.com/leodonkin/Hack-This-Site-Logs/edit/main/README.md#basic-level-11)
-
 ## Basic Level 1
 
 ### Vulnerability:
